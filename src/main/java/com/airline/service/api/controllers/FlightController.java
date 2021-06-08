@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.airline.service.api.domain.UserDto;
 import com.airline.service.api.entities.Flight;
 import com.airline.service.api.services.FlightService;
 
@@ -46,25 +45,4 @@ public class FlightController {
 	        return "index";
 	    }
 	   
-	   @GetMapping("/signup.html")
-	   public String showRegistrationForm(WebRequest request, Model model) {
-		   UserDto userDto = new UserDto();
-		   model.addAttribute("user", userDto);
-		   return "signup";
-	   }
-	   
-	   // TODO: ~In Progress~
-	   @PostMapping("/signup.html")
-	   public ModelAndView registerUserAccount(
-			   @ModelAtribute("user") @Valid UserDto userDto,
-			   HttpServletRequest request,
-			   Errors errors) {
-		   			
-		   		try {
-		   			User registered = userService.registerNewUserAccount(userDto);
-		   		} catch (UserAlreadyExistException uaeEx){
-		   			mav.addObject("message", "An account for that email address already exists!");
-		   			return mav;
-		   		}
-	   }
 }
