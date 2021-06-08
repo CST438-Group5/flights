@@ -7,5 +7,5 @@ import com.airline.service.api.entities.Flight;
 
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, String> {
-
+	Flight findByFlightNumber(String flightnum);
 }
