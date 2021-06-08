@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="flight/header :: copy"></head>
+<div id="header">
+	<h1>Welcome to your flight search! Find your flights below.</h1>
+</div>
+<body>
+	<section>
+		<div class="flight" id="flightbox">
+
+			<form id="search-form" action="#" method="POST"
+				th:action="@{/searchFlight}" th:object="${flight}">
+				<div id="flight-type">
+					<div class="info-box">
+						<input type="radio" name="flight-type" value="2"
+							id="round-trip" checked /> <label for="round-trip">Round
+							trip</label>
+					</div>
+					<div class="info-box">
+						<input type="radio" name="flight-type" value="1" id="one-way" />
+						<label for="one-way"> One way</label>
+					</div>
+
+				</div>
+				<div id="flight-depart">
+					<div class="info-box">
+						<label for="">Leaving from:</label> <input type="text" value="originCity"
+							id="dep-from" />
+						<div id="depart-res" ></div>
+					</div>
+					<div class="info-box" id="arrive-box">
+						<label for="">Arriving at:</label> <input type="text" value="destCity" id="dep-to" />
+						<div id="arrive-res"></div>
+					</div>
+				</div>
+
+				<div id="flight-dates">
+					<div class="info-box">
+						<label for="">Departure date:</label> <input type="date" value="leaveDate"
+							id="leave-date" />
+					</div>
+					<div class="info-box" id="return-box">
+						<label for="">Return date:</label> <input type="date" value="arriveDate"
+							id="return-date" />
+					</div>
+				</div>
+
+				<div id="flight-info">
+					<div class="info-box">
+						<label for="adults">Adults:</label> <select name="adults"
+							id="adults">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+
+
+					</div>
+					<div class="info-box">
+						<label for="children">Children:</label> <select name="children"
+							id="children">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+
+
+					</div>
+					<div class="info-box">
+						<label for="class-type">Class:</label> <select name="class-type"
+							id="class-type">
+							<option value="First">First Class</option>
+							<option value="Business">Business</option>
+							<option value="Economy">Economy</option>
+						</select>
+					</div>
+				</div>
+
+				<div id="flight-search">
+					<div class="info-box">
+
+						<input type="submit" id="search-flight" value="SEARCH" />
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</section>
+	<div th:replace="flight/footer :: copy"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

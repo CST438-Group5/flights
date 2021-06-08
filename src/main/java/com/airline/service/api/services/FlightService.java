@@ -50,4 +50,9 @@ public class FlightService {
 			throw new RuntimeException("No flight records to save");
 		}
 	}
+
+	public void searchFlightRecords(Flight flight) {
+		LOGGER.info("***searchFlightRecords invoked***");
+		
+	}
 }
