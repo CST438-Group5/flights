@@ -18,6 +18,10 @@ public class PassengerService {
 	@Autowired 
 	PassengerRepository passengerRepository;
 	
+	public PassengerService() {
+		
+	}
+	
 	public PassengerService(FlightRepository flightRepository, PassengerRepository passengerRepository) {
 		this.flightRepository = flightRepository;
 		this.passengerRepository = passengerRepository;
@@ -26,8 +30,8 @@ public class PassengerService {
 	// Makes calls to database to assemble a passenger and flight object to wrap into 
 	// PassengerInfo object.
 	public PassengerInfo getPassengerInfo(int id) {
-		Passenger currentPassenger = passengerRepository.findById(id);
-		Flight currentFlight = flightRepository.findByFlightNumber(currentPassenger.getFlightNum());
+		Passenger currentPassenger = passengerRepository.findByPassengerID(id);
+		Flight currentFlight = flightRepository.findByFlightNum(currentPassenger.getFlightNum());
 		return new PassengerInfo(currentPassenger, currentFlight);
 	}
 	

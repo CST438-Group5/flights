@@ -7,5 +7,5 @@ import com.airline.service.api.entities.Passenger;
 
 @Repository
 public interface PassengerRepository extends JpaRepository<Passenger, String> {
-	Passenger findById(int passengerid);
+	Passenger findByPassengerID(int passengerid);
 }

@@ -1,3 +1,4 @@
+
 package com.airline.service.api.controllers;
 
 import org.slf4j.Logger;
@@ -47,3 +48,4 @@ public class FlightController {
 	        return "flight";
 	    }
 }
+
