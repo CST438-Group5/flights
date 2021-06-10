@@ -8,5 +8,6 @@ import com.airline.service.api.entities.UserRegistrationDTO;
 public interface UserService extends UserDetailsService{
 
 	User save(UserRegistrationDTO registrationDto);
+	boolean isExist(String email);
 
 }

@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
 
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -46,10 +47,25 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User save(UserRegistrationDTO registrationDto) {
+	
 		User user = new User(registrationDto.getFirstName(), registrationDto.getLastName(), registrationDto.getEmail(),
 				passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
 
 		return userRepository.save(user);
 	}
+
+	@Override
+	public boolean isExist(String email) {
+		User user=(userRepository.findByEmail(email));
+		if (user!=null){
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+
+	
 
 }

@@ -1,5 +1,6 @@
 package com.airline.service.api.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,12 +36,14 @@ public class UserRegistrationController {
 	@PostMapping
 	public String registerUserAccount(@ModelAttribute("user") UserRegistrationDTO registrationDto) {
 
-		if (userService.loadUserByUsername(registrationDto.getEmail()) != null) {
-			return "redirect:/registration?failed";
-		} else {
-			userService.save(registrationDto);
-		}
+		if (registrationDto != null) {
+			if (userService.isExist(registrationDto.getEmail())) {
+				
+				return "redirect:/registration?failed";
+			} 
+		} 
 
+		userService.save(registrationDto);
 		return "redirect:/registration?success";
 	}
 }
