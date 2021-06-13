@@ -283,4 +283,6 @@ public class Flight implements Serializable {
 				+ ", destCity=" + destCity + ", originAirport=" + originAirport + ", destAirport=" + destAirport + "]";
 	}
 
+
+
 }

@@ -27,7 +27,7 @@ public class FlightService {
 	@Autowired
 	private AirlineRepository airlineRepository;
 
-	public Flight getFlightById(String id) {
+	public FlightInfo getFlightById(String id) {
 		LOGGER.info("***getFlightById() invoked***");
 		Flight flight = flightRepository.getById(id);
 		if (flight == null) {
@@ -35,11 +35,10 @@ public class FlightService {
 			throw new FlightNotFoundException(id);
 		} else {
 			// Packaged objects for REST API
-			// TODO: Should return a flightInfo object in the future instead of a flight object.
 			Airline airline = airlineRepository.findByAirlineID(flight.getAirlineID());
 			City destCity = cityRepository.findByCityID(flight.getDestCity());
 			City originCity = cityRepository.findByCityID(flight.getOriginCity());
-			return flight;
+			return new FlightInfo(flight, airline, originCity, destCity);
 		}
 
 	}
