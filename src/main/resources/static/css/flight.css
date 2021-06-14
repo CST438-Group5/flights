@@ -119,3 +119,8 @@ body {
 	height: 50px;
 	font-size: 1.2em;
 }
+.footer_fix {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;}

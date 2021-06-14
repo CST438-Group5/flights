@@ -18,8 +18,8 @@ public class PassengerRestController {
 	@GetMapping("/api/flights/passenger/{id}")
 	public PassengerInfo getPassengerInfo(@PathVariable("id") int idInfo) {
 		PassengerInfo passengerInfo = passengerService.getPassengerInfo(idInfo);
-		System.out.println(passengerInfo);
 		return passengerInfo;
 	}
+
 
 }

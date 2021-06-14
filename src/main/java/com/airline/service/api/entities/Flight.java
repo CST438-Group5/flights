@@ -68,7 +68,7 @@ public class Flight implements Serializable {
 	 * @param destAirport
 	 */
 	public Flight(String flightNum, int airlineID, Time leaveTime, Date leaveDate, Time arriveTime, Date arriveDate,
-			int price, int numStops, int seatAvailable, int originCity, int destCity, String originAirport,
+			int price, int numStops, int seatsAvailable, int originCity, int destCity, String originAirport,
 			String destAirport) {
 		super();
 		this.flightNum = flightNum;
@@ -79,7 +79,7 @@ public class Flight implements Serializable {
 		this.arriveDate = arriveDate;
 		this.price = price;
 		this.numStops = numStops;
-		this.seatsAvailable = seatAvailable;
+		this.seatsAvailable = seatsAvailable;
 		this.originCity = originCity;
 		this.destCity = destCity;
 		this.originAirport = originAirport;
@@ -201,15 +201,15 @@ public class Flight implements Serializable {
 	/**
 	 * @return the seatsAvailable
 	 */
-	public int getSeatAvailable() {
+	public int getSeatsAvailable() {
 		return seatsAvailable;
 	}
 
 	/**
 	 * @param seatsAvailable the seatsAvailable to set
 	 */
-	public void setSeatAvailable(int seatAvailable) {
-		this.seatsAvailable = seatAvailable;
+	public void setSeatsAvailable(int seatsAvailable) {
+		this.seatsAvailable = seatsAvailable;
 	}
 
 	/**
@@ -282,7 +282,5 @@ public class Flight implements Serializable {
 				+ price + ", numStops=" + numStops + ", seatsAvailable=" + seatsAvailable + ", originCity=" + originCity
 				+ ", destCity=" + destCity + ", originAirport=" + originAirport + ", destAirport=" + destAirport + "]";
 	}
-
-
 
 }
