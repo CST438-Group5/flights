@@ -8,17 +8,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import com.airline.service.api.entities.Airline;
@@ -26,6 +21,7 @@ import com.airline.service.api.entities.City;
 import com.airline.service.api.entities.Flight;
 import com.airline.service.api.services.FlightInfo;
 import com.airline.service.api.services.FlightService;
+import com.airline.service.api.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.mockito.BDDMockito.given;
@@ -36,6 +32,9 @@ public class FlightRestControllerTest {
 	
 	@MockBean
 	FlightService flightService;
+	
+	@MockBean
+	UserService userService;
 	
 	@Autowired
 	private MockMvc mvc;

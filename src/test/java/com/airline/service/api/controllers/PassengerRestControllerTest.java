@@ -18,6 +18,7 @@ import com.airline.service.api.entities.Flight;
 import com.airline.service.api.entities.Passenger;
 import com.airline.service.api.services.PassengerInfo;
 import com.airline.service.api.services.PassengerService;
+import com.airline.service.api.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,6 +30,9 @@ public class PassengerRestControllerTest {
 
 	@MockBean
 	PassengerService passengerService;
+	
+	@MockBean
+	UserService userService;
 	
 	@Autowired
 	MockMvc mvc;
@@ -44,10 +48,10 @@ public class PassengerRestControllerTest {
 	@Test
 	public void Test1() throws Exception {
 		Passenger passenger = new Passenger(99, "Mister", "Tester", "1A", "FL 125", 1);
-		Date dateLeave = Date.valueOf("2021-06-10");
-		Date dateArrive = Date.valueOf("2021-06-10");
-		Time timeLeave = Time.valueOf("12:25:00");
-		Time timeArrive = Time.valueOf("1:25:00");
+		Date dateLeave = Date.valueOf("2021-06-09");
+		Date dateArrive = Date.valueOf("2021-06-09");
+		Time timeLeave = Time.valueOf("10:25:00");
+		Time timeArrive = Time.valueOf("11:25:00");
 		Flight flight = new Flight("FL 125", 7, timeLeave, dateLeave, timeArrive, dateArrive, 300, 2, 5, 1, 2, "ASD", "FGH");
 		
 		given(passengerService.getPassengerInfo(99)).willReturn(new PassengerInfo(passenger, flight));
@@ -58,6 +62,12 @@ public class PassengerRestControllerTest {
 		
 		PassengerInfo passengerResult = jsonPassengerAttempt.parseObject(response.getContentAsString());
 		PassengerInfo expectedResult = new PassengerInfo(passenger, flight);
+		System.out.println("**** TEST **** : SIMULATED RESPONSE:");
+		System.out.println(response.getContentAsString());
+		System.out.println("**** TEST **** : EXPECTED RESULT:");
+		System.out.println(expectedResult);
+		System.out.println("**** TEST **** : PASSENGER RESULT");
+		System.out.println(passengerResult);
 		
 		assertThat(expectedResult).isEqualTo(passengerResult);
 	}

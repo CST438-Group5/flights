@@ -87,6 +87,42 @@ public class Passenger {
 		this.seatClass = seatClass;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Passenger other = (Passenger) obj;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (flightNum == null) {
+			if (other.flightNum != null)
+				return false;
+		} else if (!flightNum.equals(other.flightNum))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (passengerID != other.passengerID)
+			return false;
+		if (seatClass != other.seatClass)
+			return false;
+		if (seatNum == null) {
+			if (other.seatNum != null)
+				return false;
+		} else if (!seatNum.equals(other.seatNum))
+			return false;
+		return true;
+	}
+
 	// Custom toString
 	@Override
 	public String toString() {
