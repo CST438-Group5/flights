@@ -9,47 +9,58 @@
 	<section>
 		<div class="flight" id="flightbox">
 
-			<form id="search-form" action="#" method="POST"
-				th:action="@{/searchFlight}" th:object="${flight}">
+			<form id="search-form" th:action="@{/flight}" th:object="${flight}"
+				method="POST">
 				<div id="flight-type">
 					<div class="info-box">
-						<input type="radio" name="flight-type" value="2"
-							id="round-trip" checked /> <label for="round-trip">Round
+
+						<input type="radio" name="flightType" value="2" id="round-trip"
+							required="required" /> <label for="round-trip">&nbsp;Round
 							trip</label>
 					</div>
 					<div class="info-box">
-						<input type="radio" name="flight-type" value="1" id="one-way" />
-						<label for="one-way"> One way</label>
+						<input type="radio" name="flightType" value="1" id="one-way"
+							required="required" /> <label for="one-way">&nbsp; One
+							way</label>
 					</div>
-
 				</div>
 				<div id="flight-depart">
-					<div class="info-box">
-						<label for="">Leaving from:</label> <input type="text" value="originCity"
-							id="dep-from" />
-						<div id="depart-res" ></div>
+					<div class="info-box" th:object="${city}">
+						<label for="">Leaving from:</label> <select class="form-control"
+							id="dep-form" required th:field="*{cityName}">
+							<option value="">Select City</option>
+							<option th:each="city : ${cities}" th:value="${city.cityID}"
+								th:text="${city.cityName}"></option>
+						</select>
+						<div id="arrive-res"></div>
 					</div>
-					<div class="info-box" id="arrive-box">
-						<label for="">Arriving at:</label> <input type="text" value="destCity" id="dep-to" />
+					<div class="info-box" id="arrive-box" th:object="${city}">
+						<label for="">Arriving at:</label> <select class="form-control"
+							id="dep-form" required th:field="*{cityName}">
+							<option value="">Select City</option>
+							<option th:each="city : ${cities}" th:value="${city.cityID}"
+								th:text="${city.cityName}"></option>
+						</select>
 						<div id="arrive-res"></div>
 					</div>
 				</div>
 
 				<div id="flight-dates">
 					<div class="info-box">
-						<label for="">Departure date:</label> <input type="date" value="leaveDate"
-							id="leave-date" />
+						<label for="">Departure date:</label> <input type="date"
+							name="leaveDate" id="leave-date" required="required" />
 					</div>
 					<div class="info-box" id="return-box">
-						<label for="">Return date:</label> <input type="date" value="arriveDate"
-							id="return-date" />
+						<label for="">Return date:</label> <input type="date"
+							name="arriveDate" id="return-date" required="required" />
 					</div>
 				</div>
 
 				<div id="flight-info">
 					<div class="info-box">
 						<label for="adults">Adults:</label> <select name="adults"
-							id="adults">
+							id="adults" >
+							
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -59,7 +70,7 @@
 					</div>
 					<div class="info-box">
 						<label for="children">Children:</label> <select name="children"
-							id="children">
+							id="children" >
 							<option value="0">0</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -70,7 +81,7 @@
 					</div>
 					<div class="info-box">
 						<label for="class-type">Class:</label> <select name="class-type"
-							id="class-type">
+							id="class-type" >
 							<option value="First">First Class</option>
 							<option value="Business">Business</option>
 							<option value="Economy">Economy</option>
@@ -81,7 +92,7 @@
 				<div id="flight-search">
 					<div class="info-box">
 
-						<input type="submit" id="search-flight" value="SEARCH" />
+						<input  type="submit" id="search-flight" value="Search" />
 					</div>
 				</div>
 			</form>

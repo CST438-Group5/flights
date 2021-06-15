@@ -19,35 +19,12 @@ public class PassengerInfo {
 		this.flight = flight;
 	}
 
-	// Equality check
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PassengerInfo other = (PassengerInfo) obj;
-		if (flight == null) {
-			if (other.flight != null)
-				return false;
-		} else if (!flight.equals(other.flight))
-			return false;
-		if (passenger == null) {
-			if (other.passenger != null)
-				return false;
-		} else if (!passenger.equals(other.passenger))
-			return false;
-		return true;
-	}
-	
-	
 	// To string overrides
 	@Override
 	public String toString() {
 		return "PassengerInfo [passenger=" + passenger + ", flight=" + flight + "]";
 	}
+	
 	
 	
 }

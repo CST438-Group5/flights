@@ -12,5 +12,6 @@ public class AddViewConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/flight").setViewName("/flight/flight");
+      registry.addViewController("/flightbooking").setViewName("/flight/bookinginfo");
     }
 }
