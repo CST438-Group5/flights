@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.airline.service.api.entities.Role;
 import com.airline.service.api.entities.User;
-import com.airline.service.api.dto.UserRegistrationDTO;
+import com.airline.service.api.entities.UserRegistrationDTO;
 import com.airline.service.api.repos.UserRepository;
 
 @Service
@@ -63,6 +63,12 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}
 
+	}
+
+	@Override
+	public User findbyEmail(String email) {
+		// TODO Auto-generated method stub
+		return userRepository.findByEmail(email);
 	}
 
 

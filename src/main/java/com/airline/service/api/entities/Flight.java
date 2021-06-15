@@ -68,7 +68,7 @@ public class Flight implements Serializable {
 	 * @param destAirport
 	 */
 	public Flight(String flightNum, int airlineID, Time leaveTime, Date leaveDate, Time arriveTime, Date arriveDate,
-			int price, int numStops, int seatAvailable, int originCity, int destCity, String originAirport,
+			int price, int numStops, int seatsAvailable, int originCity, int destCity, String originAirport,
 			String destAirport) {
 		super();
 		this.flightNum = flightNum;
@@ -79,7 +79,7 @@ public class Flight implements Serializable {
 		this.arriveDate = arriveDate;
 		this.price = price;
 		this.numStops = numStops;
-		this.seatsAvailable = seatAvailable;
+		this.seatsAvailable = seatsAvailable;
 		this.originCity = originCity;
 		this.destCity = destCity;
 		this.originAirport = originAirport;
@@ -201,15 +201,15 @@ public class Flight implements Serializable {
 	/**
 	 * @return the seatsAvailable
 	 */
-	public int getSeatAvailable() {
+	public int getSeatsAvailable() {
 		return seatsAvailable;
 	}
 
 	/**
 	 * @param seatsAvailable the seatsAvailable to set
 	 */
-	public void setSeatAvailable(int seatAvailable) {
-		this.seatsAvailable = seatAvailable;
+	public void setSeatsAvailable(int seatsAvailable) {
+		this.seatsAvailable = seatsAvailable;
 	}
 
 	/**
@@ -276,72 +276,11 @@ public class Flight implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Flight other = (Flight) obj;
-		if (airlineID != other.airlineID)
-			return false;
-		if (arriveDate == null) {
-			if (other.arriveDate != null)
-				return false;
-		} else if (!arriveDate.equals(other.arriveDate))
-			return false;
-		if (arriveTime == null) {
-			if (other.arriveTime != null)
-				return false;
-		} else if (!arriveTime.equals(other.arriveTime))
-			return false;
-		if (destAirport == null) {
-			if (other.destAirport != null)
-				return false;
-		} else if (!destAirport.equals(other.destAirport))
-			return false;
-		if (destCity != other.destCity)
-			return false;
-		if (flightNum == null) {
-			if (other.flightNum != null)
-				return false;
-		} else if (!flightNum.equals(other.flightNum))
-			return false;
-		if (leaveDate == null) {
-			if (other.leaveDate != null)
-				return false;
-		} else if (!leaveDate.equals(other.leaveDate))
-			return false;
-		if (leaveTime == null) {
-			if (other.leaveTime != null)
-				return false;
-		} else if (!leaveTime.equals(other.leaveTime))
-			return false;
-		if (numStops != other.numStops)
-			return false;
-		if (originAirport == null) {
-			if (other.originAirport != null)
-				return false;
-		} else if (!originAirport.equals(other.originAirport))
-			return false;
-		if (originCity != other.originCity)
-			return false;
-		if (price != other.price)
-			return false;
-		if (seatsAvailable != other.seatsAvailable)
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
 		return "Flight [flightNum=" + flightNum + ", airlineID=" + airlineID + ", leaveTime=" + leaveTime
 				+ ", leaveDate=" + leaveDate + ", arriveTime=" + arriveTime + ", arriveDate=" + arriveDate + ", price="
 				+ price + ", numStops=" + numStops + ", seatsAvailable=" + seatsAvailable + ", originCity=" + originCity
 				+ ", destCity=" + destCity + ", originAirport=" + originAirport + ", destAirport=" + destAirport + "]";
 	}
-
-
 
 }
