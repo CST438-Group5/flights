@@ -60,7 +60,7 @@ public class FlightRestControllerTest {
 		City originCity = new City(99, "Test City", "Test Country");
 		City destCity = new City(100, "Test City 2", "Test Country 2");
 		
-		given(flightService.getFlightById("FL 125")).willReturn(new FlightInfo(flight, airline, originCity, destCity));
+		given(flightService.getFlightByIdRest("FL 125")).willReturn(new FlightInfo(flight, airline, originCity, destCity));
 		
 		MockHttpServletResponse response = mvc.perform(get("/api/flights/flight/FL 125")).andReturn().getResponse();
 		
