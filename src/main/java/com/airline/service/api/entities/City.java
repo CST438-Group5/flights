@@ -75,10 +75,34 @@ public class City implements Serializable{
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	
+		@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		City other = (City) obj;
+		if (cityID != other.cityID)
+			return false;
+		if (cityName == null) {
+			if (other.cityName != null)
+				return false;
+		} else if (!cityName.equals(other.cityName))
+			return false;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
+			return false;
+		return true;
+	}
+	
 	@Override
 	public String toString() {
 		return "City [cityID=" + cityID + ", cityName=" + cityName + ", country=" + country + "]";
 	}
-	
-	
+		
 }
