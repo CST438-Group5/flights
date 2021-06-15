@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.airline.service.api.entities.User;
-import com.airline.service.api.entities.UserRegistrationDTO;
+import com.airline.service.api.dto.UserRegistrationDTO;
 import com.airline.service.api.services.UserService;
 
 @Controller
