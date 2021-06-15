@@ -1,4 +1,4 @@
-package com.airline.service.api.entities;
+package com.airline.service.api.dto;
 
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,8 @@
 
 package com.airline.service.api.controllers;
 
+import com.airline.service.api.dto.FlightDto;
+import com.airline.service.api.dto.UserRegistrationDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,11 @@ public class FlightController {
 	@Autowired
 	private FlightService flightService;
 
+	@ModelAttribute("flight")
+	public FlightDto flightDto() {
+		return new FlightDto();
+	}
+
 	public FlightController(FlightService flightService) {
 		this.flightService = flightService;
 	}
@@ -33,13 +40,22 @@ public class FlightController {
 
 	        return "f";
 	    }
+
+	@PostMapping("/searchFlight1")
+	public String searchFlight1(@ModelAttribute("flight") FlightDto flightDto) {
+		System.out.println(flightDto.toString());
+		//flightService.searchFlightRecords(flighDto);
+		return "redirect:/flight";
+	}
+
 	  @PostMapping("/searchFlight")
-	    public String searchFlights(@ModelAttribute("flight") Flight flight, Model model) {
+	    public String searchFlights(@ModelAttribute("flight") FlightDto flight, Model model) {
 		  System.out.println(flight.toString());
 		  System.out.println(model.toString());
-	        flightService.searchFlightRecords(flight);
+	        //flightService.searchFlightRecords(flight);
 	        return "redirect:/flight";
 	    }
+
 	   @GetMapping("/showNewFlightForm")
 	    public String showNewFlightForm(Model model) {
 
@@ -48,4 +64,5 @@ public class FlightController {
 	        return "flight";
 	    }
 }
+
 
