@@ -20,6 +20,7 @@ import com.airline.service.api.services.PassengerService;
 @RestController
 public class PassengerRestController {
 	
+	@Autowired
 	private PassengerRepository passengerRepository;
 	
 	@Autowired
@@ -34,6 +35,7 @@ public class PassengerRestController {
 	@PostMapping("/api/flights/passenger/")
 	ResponseEntity<String> newPassenger(@RequestBody Passenger newPassenger) {
 		HttpHeaders responseHeaders = new HttpHeaders();
+		System.out.println(newPassenger);
 		passengerRepository.save(newPassenger);
 		
 		return new ResponseEntity<>(
