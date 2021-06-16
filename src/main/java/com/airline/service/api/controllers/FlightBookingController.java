@@ -55,6 +55,7 @@ public class FlightBookingController {
    	  passenger.setLastName(user.getLastName());
    	  passenger.setSeatNum(String.valueOf(seatNumber));
    	  passenger.setFlightNum(flight.getFlightNum());
+   	  passenger.setBookingOrigin(0);
    if(passenger!=null) {
 	   Passenger existancePassenger=passengerService.isPresent(passenger.getFirstName(),passenger.getLastName(),passenger.getFlightNum());
 	   if(existancePassenger!=null) {

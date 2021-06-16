@@ -25,22 +25,34 @@ public class Passenger {
 	private String flightNum;
 	@Column (name="class")
 	private int seatClass;
+	// bookingOrigin must not be set by constructor
+	// Will be set by the function used to make the booking
+	@Column(name="bookingorigin")
+	private int bookingOrigin;
 	
 	public Passenger() { 
 		// Default constructor
 	}
 	
-	public Passenger(int passengerID, String firstName, String lastName, String seatNum, String flightNum,
+	public Passenger(/*int passengerID,*/ String firstName, String lastName, String seatNum, String flightNum,
 			int seatClass) {
 		super();
-		this.passengerID = passengerID;
+		//this.passengerID = passengerID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.seatNum = seatNum;
 		this.flightNum = flightNum;
 		this.seatClass = seatClass;
 	}
-
+	
+	// Cross-site passenger booking constructor
+	public Passenger(String firstName, String lastName, String flightNum) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.flightNum = flightNum;
+	}
+	
 	// Setters, getters
 	public int getPassengerID() {
 		return passengerID;
@@ -89,13 +101,23 @@ public class Passenger {
 	public void setSeatClass(int seatClass) {
 		this.seatClass = seatClass;
 	}
+	
+	public int getBookingOrigin() {
+		return bookingOrigin;
+	}
+	
+	public void setBookingOrigin(int bookingOrigin) {
+		this.bookingOrigin = bookingOrigin;
+	}
 
 	// Custom toString
 	@Override
 	public String toString() {
 		return "Passenger [passengerID=" + passengerID + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", seatNum=" + seatNum + ", flightNum=" + flightNum + ", seatClass=" + seatClass + "]";
+				+ ", seatNum=" + seatNum + ", flightNum=" + flightNum + ", seatClass=" + seatClass + ", bookingOrigin="
+				+ bookingOrigin + "]";
 	}
+
 
 	
 
