@@ -50,6 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	                "/css/**",
 	                "/img/**",
 	                "/api/flights/passenger/**",
+	                "/api/flights/flight/**",
 	                "/api/flights/flight/all").permitAll()
 		.anyRequest().authenticated()
 		.and()
