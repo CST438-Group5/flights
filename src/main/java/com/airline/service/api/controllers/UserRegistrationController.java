@@ -1,11 +1,14 @@
 package com.airline.service.api.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.airline.service.api.entities.User;
 import com.airline.service.api.dto.UserRegistrationDTO;
 import com.airline.service.api.services.UserService;
 
@@ -41,7 +44,6 @@ public class UserRegistrationController {
 		} 
 
 		userService.save(registrationDto);
-		//return "redirect:/registration?success";
-		return "redirect:/flight";
+		return "redirect:/registration?success";
 	}
 }

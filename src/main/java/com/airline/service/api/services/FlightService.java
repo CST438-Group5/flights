@@ -1,6 +1,8 @@
 package com.airline.service.api.services;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +29,19 @@ public class FlightService {
 	@Autowired
 	private AirlineRepository airlineRepository;
 
-	public FlightInfo getFlightById(String id) {
+	public Flight getFlightById(String id) {
+		LOGGER.info("***getFlightById() invoked***");
+		Flight flight = flightRepository.getById(id);
+		if (flight == null) {
+			LOGGER.info("***No flight record for id::" + id + "***");
+			throw new FlightNotFoundException(id);
+		} else {
+			return flight;
+		}
+	}
+	
+	// instance of getFlight to return flightInfo object instead of flight object
+	public FlightInfo getFlightByIdRest(String id) {
 		LOGGER.info("***getFlightById() invoked***");
 		Flight flight = flightRepository.getById(id);
 		if (flight == null) {
@@ -63,8 +77,25 @@ public class FlightService {
 		}
 	}
 
-	public void searchFlightRecords(Flight flight) {
+	public List<Flight> searchFlightRecords(Flight flight, String flightType) {
+
 		LOGGER.info("***searchFlightRecords invoked***");
+		Date leaveDate=flight.getLeaveDate(), arriveDate=flight.getArriveDate();
+		int seatsAvailable=flight.getSeatsAvailable(), originCity=flight.getOriginCity(), destCity=flight.getDestCity();
+		List<Flight> flightResult = null;
+		if(flightType!=null) {
+			int price=Integer.valueOf(flightType);
+			 flightResult=flightRepository.searchFlights(leaveDate, arriveDate, seatsAvailable, originCity, destCity);
+			 for (Flight temp : flightResult) {
+				 temp.setPrice(temp.getPrice()*price);
+		            
+		        }
+		}
+		return flightResult; 
+	}
+
+	public Flight flightToBookById(String id) {
 		
+		return flightRepository.getById(id);
 	}
 }

@@ -9,5 +9,6 @@ public interface UserService extends UserDetailsService{
 
 	User save(UserRegistrationDTO registrationDto);
 	boolean isExist(String email);
+	User findbyEmail(String email);
 
 }

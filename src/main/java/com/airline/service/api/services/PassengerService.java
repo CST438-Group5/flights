@@ -34,5 +34,15 @@ public class PassengerService {
 		Flight currentFlight = flightRepository.findByFlightNum(currentPassenger.getFlightNum());
 		return new PassengerInfo(currentPassenger, currentFlight);
 	}
+
+	public void saveFlight(Passenger passenger) {
+		passengerRepository.save(passenger);
+		
+	}
+
+	public Passenger isPresent(String firstName, String lastName, String flightNum) {
+		
+		return passengerRepository.isExist(firstName,  lastName,  flightNum);
+	}
 	
 }

@@ -20,7 +20,7 @@ public class FlightRestController {
 	
 	@GetMapping("/api/flights/flight/{id}")
 	public FlightInfo getFlightInfo(@PathVariable("id") String idInfo) {
-		FlightInfo flightInfo = flightService.getFlightById(idInfo);
+		FlightInfo flightInfo = flightService.getFlightByIdRest(idInfo);
 		System.out.println(flightInfo);
 		return flightInfo;
 	}
