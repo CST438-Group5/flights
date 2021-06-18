@@ -16,11 +16,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.airline.service.api.entities.Flight;
 import com.airline.service.api.entities.Passenger;
-import com.airline.service.api.repos.PassengerRepository;
-import com.airline.service.api.services.FlightService;
 import com.airline.service.api.services.PassengerInfo;
 import com.airline.service.api.services.PassengerService;
-import com.airline.service.api.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,15 +29,6 @@ public class PassengerRestControllerTest {
 
 	@MockBean
 	PassengerService passengerService;
-	
-	@MockBean
-	FlightService flightService;
-	
-	@MockBean
-	PassengerRepository passengerRepository;
-	
-	@MockBean
-	UserService userService;
 	
 	@Autowired
 	MockMvc mvc;
@@ -55,7 +43,7 @@ public class PassengerRestControllerTest {
 	
 	@Test
 	public void Test1() throws Exception {
-		Passenger passenger = new Passenger(/*99,*/ "Mister", "Tester", "1A", "FL 125", 1);
+		Passenger passenger = new Passenger(99, "Mister", "Tester", "1A", "FL 125", 1);
 		Date dateLeave = Date.valueOf("2021-06-10");
 		Date dateArrive = Date.valueOf("2021-06-10");
 		Time timeLeave = Time.valueOf("12:25:00");

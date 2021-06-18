@@ -51,11 +51,11 @@ public class FlightBookingController {
    	  Flight flight= flightService.flightToBookById(id);
   	int seatNumber = ThreadLocalRandom.current().nextInt(1, flight.getSeatsAvailable() + 1);
    	  Passenger passenger=new Passenger();
+		 passenger.setUserEmail(email);
    	  passenger.setFirstName(user.getFirstName());
    	  passenger.setLastName(user.getLastName());
    	  passenger.setSeatNum(String.valueOf(seatNumber));
    	  passenger.setFlightNum(flight.getFlightNum());
-   	  passenger.setBookingOrigin(0);
    if(passenger!=null) {
 	   Passenger existancePassenger=passengerService.isPresent(passenger.getFirstName(),passenger.getLastName(),passenger.getFlightNum());
 	   if(existancePassenger!=null) {
@@ -70,5 +70,4 @@ public class FlightBookingController {
    	 model.addAttribute("passenger", passenger);
    	   return "/flight/bookinginfo";
      }
-	 
 }

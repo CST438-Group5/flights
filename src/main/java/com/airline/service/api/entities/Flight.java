@@ -276,65 +276,6 @@ public class Flight implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Flight other = (Flight) obj;
-		if (airlineID != other.airlineID)
-			return false;
-		if (arriveDate == null) {
-			if (other.arriveDate != null)
-				return false;
-		} else if (!arriveDate.equals(other.arriveDate))
-			return false;
-		if (arriveTime == null) {
-			if (other.arriveTime != null)
-				return false;
-		} else if (!arriveTime.equals(other.arriveTime))
-			return false;
-		if (destAirport == null) {
-			if (other.destAirport != null)
-				return false;
-		} else if (!destAirport.equals(other.destAirport))
-			return false;
-		if (destCity != other.destCity)
-			return false;
-		if (flightNum == null) {
-			if (other.flightNum != null)
-				return false;
-		} else if (!flightNum.equals(other.flightNum))
-			return false;
-		if (leaveDate == null) {
-			if (other.leaveDate != null)
-				return false;
-		} else if (!leaveDate.equals(other.leaveDate))
-			return false;
-		if (leaveTime == null) {
-			if (other.leaveTime != null)
-				return false;
-		} else if (!leaveTime.equals(other.leaveTime))
-			return false;
-		if (numStops != other.numStops)
-			return false;
-		if (originAirport == null) {
-			if (other.originAirport != null)
-				return false;
-		} else if (!originAirport.equals(other.originAirport))
-			return false;
-		if (originCity != other.originCity)
-			return false;
-		if (price != other.price)
-			return false;
-		if (seatsAvailable != other.seatsAvailable)
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
 		return "Flight [flightNum=" + flightNum + ", airlineID=" + airlineID + ", leaveTime=" + leaveTime
 				+ ", leaveDate=" + leaveDate + ", arriveTime=" + arriveTime + ", arriveDate=" + arriveDate + ", price="

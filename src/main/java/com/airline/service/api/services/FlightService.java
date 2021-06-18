@@ -79,7 +79,9 @@ public class FlightService {
 
 	public List<Flight> searchFlightRecords(Flight flight, String flightType) {
 
-		LOGGER.info("***searchFlightRecords invoked***");
+		return flightRepository.findAll();
+
+	/*	LOGGER.info("***searchFlightRecords invoked***");
 		Date leaveDate=flight.getLeaveDate(), arriveDate=flight.getArriveDate();
 		int seatsAvailable=flight.getSeatsAvailable(), originCity=flight.getOriginCity(), destCity=flight.getDestCity();
 		List<Flight> flightResult = null;
@@ -91,11 +93,11 @@ public class FlightService {
 		            
 		        }
 		}
-		return flightResult; 
-	}
+		return flightResult;
+	}*/
 
-	public Flight flightToBookById(String id) {
+	//public Flight flightToBookById(String id) {
 		
-		return flightRepository.getById(id);
+		//return flightRepository.getById(id);
 	}
 }

@@ -46,8 +46,10 @@
                     <td th:text="${flight.destCity}"></td>
                     <td th:text="${flight.destAirport}"></td>
                     <td th:text="${flight.price}"></td>
-                   <td><a th:href="@{booking/findOne/(id=${flight.flightNum})}" 
-						onclick="return confirm('Are you sure?')" class="btn btn-w-m btn-success eBtn" > Book Now</a></td>
+                   <td>
+                       <a th:href="@{booking/findOne/(id=${flight.flightNum})}"
+						onclick="return confirm('Are you sure?')" class="btn btn-w-m btn-success eBtn" > Book Now</a>
+                   </td>
                 </tbody>
             </table>
     
