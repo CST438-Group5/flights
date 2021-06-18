@@ -43,7 +43,7 @@ public class PassengerRestController {
 	// Make reservation with external site
 	@PostMapping("/api/flights/passenger/")
 	// Requests JSON with - First name, last name, flight #
-	ResponseEntity<String> newPassenger(@RequestBody Passenger newPassenger) {
+	ResponseEntity<Integer> newPassenger(@RequestBody Passenger newPassenger) {
 		 HttpHeaders responseHeaders = new HttpHeaders();
 		// Attempt to grab existing flight from database, throws exception if not found
 		try {
@@ -52,13 +52,17 @@ public class PassengerRestController {
 			 newPassenger.setSeatNum(String.valueOf(seatNumber));
 			 newPassenger.setBookingOrigin(1);
 			 passengerRepository.save(newPassenger);
-				
-			return new ResponseEntity<>("New passenger was successfully added.", responseHeaders, HttpStatus.OK);
+			 
+			 //int passengerId = thisPassenger.getPassengerID();
+			 Passenger thisPassenger = passengerRepository.isExist(newPassenger.getFirstName(), 
+					 newPassenger.getLastName(), newPassenger.getFlightNum());
+			 
+			 return new ResponseEntity<Integer>(thisPassenger.getPassengerID(), responseHeaders, HttpStatus.OK);
 			
 		} catch(EntityNotFoundException e) {
 			System.out.println(e);
 		}
-		return new ResponseEntity<>("Failed to add passenger booking!", responseHeaders, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Integer>(-1, responseHeaders, HttpStatus.BAD_REQUEST);
 	}
 	
 	// This API endpoint can only be used to remove bookings made from external services.

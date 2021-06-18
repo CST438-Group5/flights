@@ -12,4 +12,5 @@ public interface PassengerRepository extends JpaRepository<Passenger, String> {
 
 	@Query(value="SELECT * FROM passenger p WHERE p.firstName=?1 and p.lastName=?2 and p.flightNum=?3", nativeQuery=true)
 	Passenger isExist(String firstName, String lastName, String flightNum);
+	
 }
