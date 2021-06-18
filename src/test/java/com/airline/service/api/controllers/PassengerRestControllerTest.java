@@ -16,8 +16,11 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.airline.service.api.entities.Flight;
 import com.airline.service.api.entities.Passenger;
+import com.airline.service.api.repos.PassengerRepository;
+import com.airline.service.api.services.FlightService;
 import com.airline.service.api.services.PassengerInfo;
 import com.airline.service.api.services.PassengerService;
+import com.airline.service.api.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,6 +32,15 @@ public class PassengerRestControllerTest {
 
 	@MockBean
 	PassengerService passengerService;
+	
+	@MockBean
+	FlightService flightService;
+	
+	@MockBean
+	PassengerRepository passengerRepository;
+	
+	@MockBean
+	UserService userService;
 	
 	@Autowired
 	MockMvc mvc;
