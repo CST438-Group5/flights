@@ -44,7 +44,7 @@ public class FlightController {
 		    List<City> cities = cityService.getAllCity();
 		    model.addAttribute("cities", cities);
 		    model.addAttribute("city", new City());
-	        return "/flight/flight";
+	        return "flight/flight";
 	    }
 	  @RequestMapping(value = "/flight", method = RequestMethod.POST)
 	    public String searchFlights(@RequestParam(required = true)String flightType,String adults,Model model, @ModelAttribute Flight flight,City city) {
