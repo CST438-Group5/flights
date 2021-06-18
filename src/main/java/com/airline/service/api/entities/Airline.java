@@ -41,6 +41,25 @@ public class Airline {
 		this.airlineName = airlineName;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Airline other = (Airline) obj;
+		if (airlineID != other.airlineID)
+			return false;
+		if (airlineName == null) {
+			if (other.airlineName != null)
+				return false;
+		} else if (!airlineName.equals(other.airlineName))
+			return false;
+		return true;
+	}
+
 	// Overrides: toString()
 	@Override
 	public String toString() {

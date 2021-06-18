@@ -21,11 +21,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.mock.web.MockHttpServletResponse;
 
+import com.airline.service.api.configs.SecurityConfiguration;
 import com.airline.service.api.entities.Airline;
 import com.airline.service.api.entities.City;
 import com.airline.service.api.entities.Flight;
 import com.airline.service.api.services.FlightInfo;
 import com.airline.service.api.services.FlightService;
+import com.airline.service.api.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.mockito.BDDMockito.given;
@@ -36,6 +38,9 @@ public class FlightRestControllerTest {
 	
 	@MockBean
 	FlightService flightService;
+	
+	@MockBean
+	UserService userService;
 	
 	@Autowired
 	private MockMvc mvc;
