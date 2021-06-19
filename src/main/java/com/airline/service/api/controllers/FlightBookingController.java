@@ -36,14 +36,14 @@ public class FlightBookingController {
 	UserService userService;
 	@Autowired
 	PassengerService passengerService;
-	
+
 	 @RequestMapping("booking/findOne")
      public String findOne(String id,Model model) {
 		 Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		 String email;
 		 if (principal instanceof UserDetails) {
 		   email = ((UserDetails)principal).getUsername();
-		   
+
 		 } else {
 		   email = principal.toString();
 		 }
@@ -61,14 +61,14 @@ public class FlightBookingController {
 	   if(existancePassenger!=null) {
 		   model.addAttribute("passenger", existancePassenger);
 		 return "forward:/flightbooking?failed";
-		  
+
 	   }else {
 		   passengerService.saveFlight(passenger);
 	   }
-	   
+
    }
    	 model.addAttribute("passenger", passenger);
-   	   return "/flight/bookinginfo";
+   	   return "flight/bookinginfo";
      }
-	 
+
 }
