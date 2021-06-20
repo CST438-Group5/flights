@@ -34,5 +34,4 @@ public class FlightRestController {
 		List<Flight> allFlights = flightService.getAllFlights();
 		return allFlights;
 	}
-
 }

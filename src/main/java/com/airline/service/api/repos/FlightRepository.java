@@ -14,7 +14,8 @@ import com.airline.service.api.entities.Flight;
 public interface FlightRepository extends JpaRepository<Flight, String> {
 
 	@Query(value="SELECT * FROM flight p WHERE p.leaveDate=?1 and p.arriveDate=?2 and p.seatsAvailable>=?3 and p.originCity=?4 and p.destCity=?5", nativeQuery=true)
-	List<Flight> searchFlights(Date leaveDate, Date arriveDate,int seatsAvailable,int originCity,int destCity);
+	//List<Flight> searchFlights(Date leaveDate, Date arriveDate,int seatsAvailable,int originCity,int destCity);
+	List<Flight> searchFlights(String leaveDate, String arriveDate,int seatsAvailable,int originCity,int destCity);
 	Flight findByFlightNum(String flightnum);
 
 }

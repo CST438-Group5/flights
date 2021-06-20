@@ -1,6 +1,10 @@
 package com.airline.service.api.services;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,15 +81,39 @@ public class FlightService {
 		}
 	}
 
+	private String getSt(Date date) {
+		String pattern = "yyyy-MM-dd";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		String strDate = simpleDateFormat.format(date);
+		return strDate;
+	}
 	public List<Flight> searchFlightRecords(Flight flight, String flightType) {
 
 		LOGGER.info("***searchFlightRecords invoked***");
 		Date leaveDate=flight.getLeaveDate(), arriveDate=flight.getArriveDate();
+		String leaveDate1 = getSt(leaveDate);
+		String arriveDate1 = getSt(arriveDate);
+
 		int seatsAvailable=flight.getSeatsAvailable(), originCity=flight.getOriginCity(), destCity=flight.getDestCity();
-		List<Flight> flightResult = null;
+		List<Flight> flightResult = new ArrayList<>();
 		if(flightType!=null) {
-			int price=Integer.valueOf(flightType);
-			 flightResult=flightRepository.searchFlights(leaveDate, arriveDate, seatsAvailable, originCity, destCity);
+			int price=Integer.parseInt(flightType);
+			List<Flight> all = flightRepository.findAll();
+			for(var fl : all) {
+
+				String leaveDate2 = getSt(fl.getLeaveDate());
+				String arriveDate2 = getSt(fl.getArriveDate());
+
+				if (!leaveDate2.equals(leaveDate1)) continue;
+				if (!arriveDate2.equals(arriveDate1)) continue;
+				if ( fl.getSeatsAvailable() < seatsAvailable) continue;
+				if ( fl.getOriginCity() != originCity) continue;
+				if ( fl.getDestCity() != destCity) continue;
+				flightResult.add(fl);
+			}
+			//flightResult=flightRepository.searchFlights(leaveDate, arriveDate, seatsAvailable, originCity, destCity);
+
+			//flightResult=flightRepository.searchFlights(leaveDate1, arriveDate1, seatsAvailable, originCity, destCity);
 			 for (Flight temp : flightResult) {
 				 temp.setPrice(temp.getPrice()*price);
 		            

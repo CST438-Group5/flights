@@ -69,7 +69,13 @@ public class PassengerRestController {
 	// Attempting to remove a booking made internally will fail.
 	@DeleteMapping("/api/flights/passenger/{id}")
 	public String deletePassenger(@PathVariable("id") int idInfo) {
+
 		Passenger passenger = passengerRepository.findByPassengerID(idInfo);
+		passengerRepository.delete(passenger);
+
+		return "Passenger deleted";
+
+		/*Passenger passenger = passengerRepository.findByPassengerID(idInfo);
 		
 		if(passenger.getBookingOrigin() == 1) {
 			passengerRepository.delete(passenger);
@@ -78,7 +84,7 @@ public class PassengerRestController {
 		} else {
 			System.out.println("Error: You may not delete a booking that did not originate from your service.");
 			throw new AccessDeniedException("Access violation occurred. Entity deletion failed.");
-		}
+		}*/
 		
 	}
 

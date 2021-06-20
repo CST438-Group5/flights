@@ -15,6 +15,10 @@ public class Passenger {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="passengerid")
 	private int passengerID;
+
+	@Column(name="userEmail")
+	private String userEmail;
+
 	@Column(name="firstname")
 	private String firstName;
 	@Column (name="lastname")
@@ -38,6 +42,18 @@ public class Passenger {
 			int seatClass) {
 		super();
 		//this.passengerID = passengerID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.seatNum = seatNum;
+		this.flightNum = flightNum;
+		this.seatClass = seatClass;
+	}
+
+	public Passenger(int passengerID, String email, String firstName, String lastName, String seatNum, String flightNum,
+					 int seatClass) {
+		super();
+		//this.passengerID = passengerID;
+		this.userEmail = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.seatNum = seatNum;
@@ -148,12 +164,32 @@ public class Passenger {
 		return true;
 	}
 
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
 	// Custom toString
-	@Override
+	/*@Override
 	public String toString() {
 		return "Passenger [passengerID=" + passengerID + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", seatNum=" + seatNum + ", flightNum=" + flightNum + ", seatClass=" + seatClass + ", bookingOrigin="
-				+ bookingOrigin + "]";
+				+ ", seatNum=" + seatNum + ", flightNum=" + flightNum + ", seatClass=" + seatClass + "]";
+	}*/
+
+	@Override
+	public String toString() {
+		return "Passenger{" +
+				"passengerID=" + passengerID +
+				", userEmail='" + userEmail + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", seatNum='" + seatNum + '\'' +
+				", flightNum='" + flightNum + '\'' +
+				", seatClass=" + seatClass +
+				'}';
 	}
 
 

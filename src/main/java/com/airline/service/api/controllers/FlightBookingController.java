@@ -1,11 +1,13 @@
 package com.airline.service.api.controllers;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.airline.service.api.services.PassengerInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,24 +53,22 @@ public class FlightBookingController {
    	  Flight flight= flightService.flightToBookById(id);
   	int seatNumber = ThreadLocalRandom.current().nextInt(1, flight.getSeatsAvailable() + 1);
    	  Passenger passenger=new Passenger();
+   	  passenger.setUserEmail(email);
    	  passenger.setFirstName(user.getFirstName());
    	  passenger.setLastName(user.getLastName());
    	  passenger.setSeatNum(String.valueOf(seatNumber));
    	  passenger.setFlightNum(flight.getFlightNum());
    	  passenger.setBookingOrigin(0);
-   if(passenger!=null) {
-	   Passenger existancePassenger=passengerService.isPresent(passenger.getFirstName(),passenger.getLastName(),passenger.getFlightNum());
-	   if(existancePassenger!=null) {
-		   model.addAttribute("passenger", existancePassenger);
-		 return "forward:/flightbooking?failed";
 
-	   }else {
-		   passengerService.saveFlight(passenger);
-	   }
+		 List<PassengerInfo> oldP = passengerService.getPassengerInfo(email);
+		 if (oldP == null || oldP.isEmpty()) {
+			 passengerService.saveFlight(passenger);
+			 model.addAttribute("passenger", passenger);
+			 return "flight/bookinginfo";
+		 }
 
-   }
-   	 model.addAttribute("passenger", passenger);
-   	   return "flight/bookinginfo";
+		 Passenger existancePassenger= oldP.get(0).passenger; //passengerService.isPresent(passenger.getFirstName(),passenger.getLastName(),passenger.getFlightNum());
+			 model.addAttribute("passenger", existancePassenger);
+		   return "forward:/flightbooking?failed";
      }
-
 }

@@ -8,6 +8,9 @@ import com.airline.service.api.entities.Passenger;
 import com.airline.service.api.repos.FlightRepository;
 import com.airline.service.api.repos.PassengerRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // Service calls unique information from database pertaining to an individual's flight details
 
 @Service
@@ -33,6 +36,23 @@ public class PassengerService {
 		Passenger currentPassenger = passengerRepository.findByPassengerID(id);
 		Flight currentFlight = flightRepository.findByFlightNum(currentPassenger.getFlightNum());
 		return new PassengerInfo(currentPassenger, currentFlight);
+	}
+
+	public List<PassengerInfo> getPassengerInfo(String email) {
+		List<Passenger> currentPassengerList = passengerRepository.findByPassenger_UserEmail(email);
+		if ( currentPassengerList == null || currentPassengerList.isEmpty()) {
+			return null;
+		}
+
+		List<PassengerInfo> plist = new ArrayList<>();
+
+		for(var cp : currentPassengerList) {
+			Flight currentFlight = flightRepository.findByFlightNum(cp.getFlightNum());
+			var pi = new PassengerInfo(cp, currentFlight);
+			plist.add(pi);
+		}
+
+		return plist;
 	}
 
 	public void saveFlight(Passenger passenger) {

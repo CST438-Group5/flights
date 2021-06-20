@@ -137,7 +137,7 @@
 			let res = confirm('Are you sure?');
 			const pid = [[${passengerId}]];
 			if ( res && pid >= 1) {
-				var url = 'http://localhost:8081/api/flights/passenger/' + pid;
+				var url = '/api/flights/passenger/' + pid;
 				console.log(url);
 				//window.alert(url);
 				$(document).ready(function () {
